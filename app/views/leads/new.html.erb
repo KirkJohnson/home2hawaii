@@ -1,0 +1,77 @@
+<%- model_class = Lead -%>
+
+<%= form_for @lead, :html => { :class => "form-horizontal lead", :id => "lead_form" } do |f| %>
+
+  <% if @lead.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@lead.errors.count, "error") %> prohibited this lead from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @lead.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group" style="display:none" >
+    <%= f.label :location, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :location, :class => 'form-control', :value => @location %>
+    </div>
+    <%=f.error_span(:location) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:email) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :comment, "Desired", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :comment, :class => 'form-control',
+                      :placeholder => "e.g. 3 bedroom, 2 bath, $300-$700k " %>
+    </div>
+    <%=f.error_span(:comment) %>
+  </div>
+  <div class="form-group" style="display:none" >
+    <%= f.label :user_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :user_id, :class => 'form-control', :value => @user.id %>
+    </div>
+    <%=f.error_span(:user_id) %>
+  </div>
+  <div class="form-group" style="display:none">
+    <%= f.label :processed, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :processed, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:processed) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Find Amazing Homes", :class => 'btn btn-primary', :id => "lead_submit" %>
+     
+    </div>
+  </div>
+
+<% end %>
+
+<script>
+  jQuery(document).ready(function($) {
+    
+    //control when lead is submitted display message about redirect
+    $("#lead_submit").click(function(e){
+        
+        alert("Thank you.  One of our trained realtors will put together a customized list of homes for you "+
+            "and contact you shortly.  In the meantime see what is available on our site.");
+    })
+    
+});
+</script>

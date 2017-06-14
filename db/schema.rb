@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512012328) do
+ActiveRecord::Schema.define(version: 20170512105615) do
+
+  create_table "leads", force: :cascade do |t|
+    t.string   "location"
+    t.string   "email"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.boolean  "processed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "leads", ["user_id"], name: "index_leads_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

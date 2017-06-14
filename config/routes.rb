@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :leads
   devise_for :users
-  get 'home/index'
+  get 'find_homes' => "leads#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
