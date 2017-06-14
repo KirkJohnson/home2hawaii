@@ -5,7 +5,8 @@ class LeadsController < ApplicationController
   # GET /leads
   # GET /leads.json
   def index
-    @leads = Lead.where("user_id", current_user.id)
+    id = current_user.id? ? current_user.id : 1
+    @leads = Lead.where("user_id", id)
   end
 
   # GET /leads/1
